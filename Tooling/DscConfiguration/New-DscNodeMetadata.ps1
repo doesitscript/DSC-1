@@ -35,7 +35,7 @@ function New-DscNodeMetadata
             ValueFromPipelineByPropertyName
         )]
         [ValidateNotNullOrEmpty()]
-        [guid]
+        [string]
         $NodeName,
 
         #Path to the AllNodes subfolder in the configuration data folder.
@@ -48,25 +48,31 @@ function New-DscNodeMetadata
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $Services = @()
+        $Services = @(),
+
+        [switch]
+        $Force
     )
     begin
     {
         if ($psboundparameters.containskey('path')) {
                     $psboundparameters.Remove('path') | out-null
         }
-        Resolve-ConfigurationDataPath -Path $Path
-
+        Write-Verbose "Resolving Path for ConfigData"
+        Resolve-ConfigurationDataPath -Path $Path -Verbose:([bool]$psboundparameters['verbose'])
+        
         $AllNodesConfigurationPath = (join-path $script:ConfigurationDataPath 'AllNodes')
+        Write-Verbose "Using $AllNodesConfigurationPath for AllNodes Path"
     }
     process
     {
         if (-not $psboundparameters.containskey('NodeName')){
-            $psboundparameters.Add('NodeName', [guid]::NewGuid().Guid)
+            $psboundparameters.Add('NodeName', $Name)
+            Write-Verbose "Adding $name as WMF5 Named Configuration NodeName."
         }
-        Out-ConfigurationDataFile -Parameters $psboundparameters -ConfigurationDataPath $AllNodesConfigurationPath
+        $psboundparameters.Remove('Force') | Out-Null
+        Out-ConfigurationDataFile -Parameters $psboundparameters -ConfigurationDataPath $AllNodesConfigurationPath -Force:([bool]$Force)
     }
-
 }
 
 function New-DscServiceMetadata {
@@ -127,7 +133,17 @@ function New-DscSiteMetadata {
 
 function Out-ConfigurationDataFile {
     [cmdletbinding()]
-    param($Parameters, $ConfigurationDataPath, [switch]$DoNotIncludeName)
+    param(
+        $Parameters,
+        
+        $ConfigurationDataPath, 
+        
+        [switch]
+        $DoNotIncludeName,
+
+        [switch]
+        $Force
+    )
 
     $StartingBlock = "@{"
     $EndingBlock = "}"
@@ -147,8 +163,12 @@ function Out-ConfigurationDataFile {
         }
         $EndingBlock
     )
-
-    $configuration | Out-File (Join-Path $ConfigurationDataPath "$($Parameters['Name']).psd1") -Encoding Ascii
+    if (!(Test-Path (Join-Path $ConfigurationDataPath "$($Parameters['Name']).psd1")) -or $Force) {
+        $configuration | Out-File (Join-Path $ConfigurationDataPath "$($Parameters['Name']).psd1") -Encoding Ascii
+    }
+    else {
+        Write-Warning "Data not saved, file already exists. Use -Force to overwrite."
+    }
 }
 
 
