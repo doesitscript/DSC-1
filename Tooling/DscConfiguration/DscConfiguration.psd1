@@ -80,7 +80,8 @@ FunctionsToExport = 'Get-DscConfigurationData',
                     'Get-DscConfigurationCertificate',
                     'New-DscConfigurationDataStore',
                     'Resolve-DscConfigurationProperty',
-                    'Test-DscConfigurationPropertyExists'
+                    'Test-DscConfigurationPropertyExists',
+                    'Add-DscNodesToServiceMetadata'
 
 # Cmdlets to export from this module
 #CmdletsToExport = '*'
