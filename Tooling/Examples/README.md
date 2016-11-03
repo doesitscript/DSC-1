@@ -15,7 +15,7 @@ Create a folder to place all the files into. i.e. c:\DSC, inside that folder cre
 
 the folder structure should look like this
 C:\DSC                # copy SampleBuild.ps1 here
-+---BuldOutput        # Where the MOF files and ziped modules end up
++---BuildOutput        # Where the MOF files and ziped modules end up
 +---DSC_Configuration # Copy \Tooling\Examples\DSC_Configuration\*  here
 +---DSC_Resources     # copy StackExchangeResources, cSmbShare and cWebAdministration here
 +---DSC_Script        # copy \Tooling\Examples\SampleConfiguration here

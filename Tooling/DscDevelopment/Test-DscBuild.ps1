@@ -16,7 +16,7 @@ function Test-DscBuild
         Runs a build to the c:\temp folder and does not create compressed versions of the resource modules
         (saves a bit of time when repeatedly iterating on configuration changes)
     #>
-    [cmdletbinding(supportsshouldprocess=$true)]
+    [cmdletbinding()]
     param (
         #The path to local copy of the DSC-Prod repository
         #Defaults to two folders above the DscDevelopment module (..\..\DscDevelopment)

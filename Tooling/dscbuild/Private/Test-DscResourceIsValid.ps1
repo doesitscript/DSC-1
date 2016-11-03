@@ -100,7 +100,7 @@ function Get-FailedDscResource
             $resourceNameOrPath = $resource.Name
         }
 
-        if (-not (Test-cDscResource -Name $resourceNameOrPath))
+        if (-not (Test-xDscResource -Name $resourceNameOrPath))
         {
             Write-Warning "`tResources $($_.name) is invalid."
             $resource

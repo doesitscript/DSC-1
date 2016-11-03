@@ -27,29 +27,29 @@ else
 
 $ConfigurationData = @{AllNodes=@(); Credentials=@{}; Applications=@{}; Services=@{}; SiteData =@{}}
 
-. $psscriptroot\Get-Hashtable.ps1
-. $psscriptroot\Test-LocalCertificate.ps1
+. $psscriptroot\Private\Get-Hashtable.ps1
+. $psscriptroot\Private\Test-LocalCertificate.ps1
 
-. $psscriptroot\New-ConfigurationDataStore.ps1
-. $psscriptroot\New-DscNodeMetadata.ps1
-. $psscriptroot\Add-DscNodesToServiceMetadata.ps1
+. $psscriptroot\Public\New-ConfigurationDataStore.ps1
+. $psscriptroot\Public\New-DscNodeMetadata.ps1
+. $psscriptroot\Public\Add-DscNodesToServiceMetadata.ps1
 
-. $psscriptroot\Get-AllNodesConfigurationData.ps1
-. $psscriptroot\Get-ConfigurationData.ps1
-. $psscriptroot\Get-CredentialConfigurationData.ps1
-. $psscriptroot\Get-ServiceConfigurationData.ps1
-. $psscriptroot\Get-SiteDataConfigurationData.ps1
-. $psscriptroot\Get-EncryptedPassword.ps1
-. $psscriptroot\Resolve-ConfigurationProperty.ps1
-. $psscriptroot\Test-ConfigurationPropertyExists.ps1
+. $psscriptroot\Private\Get-AllNodesConfigurationData.ps1
+. $psscriptroot\Public\Get-ConfigurationData.ps1
+. $psscriptroot\Private\Get-CredentialConfigurationData.ps1
+. $psscriptroot\Private\Get-ServiceConfigurationData.ps1
+. $psscriptroot\Private\Get-SiteDataConfigurationData.ps1
+. $psscriptroot\Public\Get-EncryptedPassword.ps1
+. $psscriptroot\Public\Resolve-ConfigurationProperty.ps1
+. $psscriptroot\Public\Test-ConfigurationPropertyExists.ps1
 
-. $psscriptroot\Add-EncryptedPassword.ps1
-. $psscriptroot\Import-DscCredentialFile.ps1
-. $psscriptroot\Export-DscCredentialFile.ps1
-. $psscriptroot\ConvertFrom-EncryptedFile.ps1
-. $psscriptroot\ConvertTo-CredentialLookup.ps1
-. $psscriptroot\New-Credential.ps1
-. $psscriptroot\Remove-PlainTextPassword.ps1
+. $psscriptroot\Public\Add-EncryptedPassword.ps1
+. $psscriptroot\Private\Import-DscCredentialFile.ps1
+. $psscriptroot\Private\Export-DscCredentialFile.ps1
+. $psscriptroot\Private\ConvertFrom-EncryptedFile.ps1
+. $psscriptroot\Private\ConvertTo-CredentialLookup.ps1
+. $psscriptroot\Public\New-Credential.ps1
+. $psscriptroot\Private\Remove-PlainTextPassword.ps1
 
 function Set-DscConfigurationDataPath {
     param (

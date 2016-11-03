@@ -1,20 +1,20 @@
-. $psscriptroot\Assert-DestinationDirectory.ps1
-. $psscriptroot\Clear-CachedDscResource.ps1
-. $psscriptroot\Compress-DscResourceModule.ps1
-. $psscriptroot\Copy-CurrentDscResource.ps1
-. $psscriptroot\DscResourceWmiClass.ps1
-. $psscriptroot\Find-ModulesToPublish.ps1
-. $psscriptroot\Get-DscResourceVersion.ps1
-. $psscriptroot\Invoke-DscBuild.ps1
-. $psscriptroot\Invoke-DscConfiguration.ps1
-. $psscriptroot\Invoke-DscResourceUnitTest.ps1
-. $psscriptroot\New-DscChecksumFile.ps1
-. $psscriptroot\New-DscZipFile.ps1
-. $psscriptroot\Publish-DscConfiguration.ps1
-. $psscriptroot\Publish-DscResourceModule.ps1
-. $psscriptroot\Publish-DscToolModule.ps1
-. $psscriptroot\Test-DscResourceIsValid.ps1
-. $psscriptroot\Update-ModuleMetadataVersion.ps1
+. $psscriptroot\Private\Assert-DestinationDirectory.ps1
+. $psscriptroot\Private\Clear-CachedDscResource.ps1
+. $psscriptroot\Private\Compress-DscResourceModule.ps1
+. $psscriptroot\Private\Copy-CurrentDscResource.ps1
+. $psscriptroot\Public\DscResourceWmiClass.ps1
+. $psscriptroot\Private\Find-ModulesToPublish.ps1
+. $psscriptroot\Private\Get-DscResourceVersion.ps1
+. $psscriptroot\Public\Invoke-DscBuild.ps1
+. $psscriptroot\Private\Invoke-DscConfiguration.ps1
+. $psscriptroot\Private\Invoke-DscResourceUnitTest.ps1
+. $psscriptroot\Private\New-DscChecksumFile.ps1
+. $psscriptroot\Private\New-DscZipFile.ps1
+. $psscriptroot\Private\Publish-DscConfiguration.ps1
+. $psscriptroot\Private\Publish-DscResourceModule.ps1
+. $psscriptroot\Private\Publish-DscToolModule.ps1
+. $psscriptroot\Private\Test-DscResourceIsValid.ps1
+. $psscriptroot\Private\Update-ModuleMetadataVersion.ps1
 
 
 $DscBuildParameters = $null
