@@ -86,7 +86,11 @@ function Invoke-DscBuild
         # Paths that should be in the PSModulePath during test execution.  $SourceResourceDirectory and $pshome\Modules are automatically included in this list.
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $ModulePath
+        $ModulePath,
+
+        #Skip DSC resources Unit test (quicker but more fragile)
+        [switch]
+        $SkipDSCResourcesUnitTest
     )
 
     $script:DscBuildParameters = new-object PSObject -property $PSBoundParameters
@@ -125,7 +129,9 @@ function Invoke-DscBuild
         Find-ModulesToPublish @ParametersToPass
         Clear-CachedDscResource @ParametersToPass
 
-        Invoke-DscResourceUnitTest @ParametersToPass
+        if(!$SkipDSCResourcesUnitTest) {
+            Invoke-DscResourceUnitTest @ParametersToPass
+        }
 
         Copy-CurrentDscTools @ParametersToPass
 
