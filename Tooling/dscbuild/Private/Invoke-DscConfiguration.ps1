@@ -19,7 +19,7 @@ function Invoke-DscConfiguration {
                     import-module -name "$($script:DscBuildParameters.ConfigurationModuleName)" -force -Verbose:$false -ErrorAction Stop
                 }
                 catch {
-
+                    Write-Warning "import-module -name '$($script:DscBuildParameters.ConfigurationModuleName)' -force -Verbose:`$false -ErrorAction Stop # Command failed failed"
                     Write-Warning "Failed to load configuration module: $($script:DscBuildParameters.ConfigurationModuleName)"
                     $Exception = $_.Exception
                     do {
