@@ -8,7 +8,7 @@ function Test-DscResourceIsValid {
         if ($pscmdlet.shouldprocess("modules from $($script:DscBuildParameters.SourceResourceDirectory)")) {
             if ($script:DscBuildParameters.ModulesToPublish.Count -gt 0)
             {
-                $AllResources = Get-DscResource | Where-Object {$_.ImplementedAs -like 'PowerShell'}
+                #$AllResources = Get-DscResource | Where-Object {$_.ImplementedAs -like 'PowerShell'}
 
                 Get-ChildItem -Path $script:DscBuildParameters.SourceResourceDirectory -Directory |
                 Where Name -in $script:DscBuildParameters.ModulesToPublish |
