@@ -48,7 +48,7 @@ function New-DscNodeMetadata
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string[]]
-        $Services = @(),
+        $MemberOfServices = @(),
 
         [switch]
         $Force
