@@ -12,20 +12,20 @@ function Export-DscCredentialFile
     Write-Verbose "Encrypting $($Hashtable.Count) credentials for export."
 
     $newTable = @{}
-    $index = 0
 
     try
     {
         foreach ($key in $HashTable.Keys)
         {
             Write-Verbose "Encrypting credential of user $key"
+            Write-Verbose ($HashTable[$Key] | Out-String)
 
             $protectedData = Protect-Data -InputObject $HashTable[$key] -Certificate $script:LocalCertificatePath -ErrorAction Stop
             $xml = [System.Management.Automation.PSSerializer]::Serialize($protectedData, 5)
             $bytes = [System.Text.Encoding]::UTF8.GetBytes($xml)
             $base64 = [System.Convert]::ToBase64String($bytes)
 
-            $newTable[($index++)] = $base64
+            $newTable[($key)] = $base64
         }
     }
     catch

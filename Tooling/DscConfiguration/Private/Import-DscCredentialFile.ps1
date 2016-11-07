@@ -41,8 +41,8 @@ function Import-DscCredentialFile
                 throw "Encrypted credential with index $key was invalid.  Returned type $($credential.GetType().FullName) instead of PSCredential."
             }
 
-            Write-Verbose "Successfully decrypted credential of user $($credential.UserName)"
-            $returnTable[$credential.UserName] = $credential
+            Write-Verbose "Successfully decrypted credential of FriendlyName $key and user $($credential.UserName)"
+            $returnTable[$key] = $credential
         }
 
         Write-Verbose 'Finished importing credentials.'

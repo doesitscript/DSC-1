@@ -17,7 +17,8 @@ function Add-DscEncryptedPassword
         [Parameter(Mandatory, ParameterSetName = 'PasswordSecureString')]
         [string] $UserName,
 
-        [string] $FriendlyName, 
+        [string] $FriendlyName,
+
         [Parameter(Mandatory, ParameterSetName = 'PasswordSecureString')]
         [securestring] $SecurePassword,
 
@@ -44,6 +45,7 @@ function Add-DscEncryptedPassword
     }
 
     if (-not ($FriendlyName)) {
+        Write-Verbose "Using UserName $($Credential.UserName) as FriendlyName"
       $FriendlyName = $Credential.UserName
     }
 
