@@ -18,7 +18,6 @@ function Export-DscCredentialFile
         foreach ($key in $HashTable.Keys)
         {
             Write-Verbose "Encrypting credential of user $key"
-            Write-Verbose ($HashTable[$Key] | Out-String)
 
             $protectedData = Protect-Data -InputObject $HashTable[$key] -Certificate $script:LocalCertificatePath -ErrorAction Stop
             $xml = [System.Management.Automation.PSSerializer]::Serialize($protectedData, 5)
